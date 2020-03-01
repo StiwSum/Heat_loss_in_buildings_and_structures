@@ -159,16 +159,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActionPerformed
         // Окно с методическими указаниями
+        
+        // Использование библиотеки ICEPDF
         SwingController controller = new SwingController();
         SwingViewBuilder factory = new SwingViewBuilder(controller);
         JPanel VievComponentPanel = factory.buildViewerPanel();
         controller.getDocumentViewController().setAnnotationCallback(
                 new org.icepdf.ri.common.MyAnnotationCallback(
                         controller.getDocumentViewController()));
+        // Создание окна
         JFrame pdfFrame = new JFrame("Методические указания");
         pdfFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         pdfFrame.add(VievComponentPanel);
         controller.openDocument(filePath);
+        
+        // Центрирование и отображение окна 
         pdfFrame.pack();
         pdfFrame.setSize(900, 800);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
